@@ -1,0 +1,28 @@
+{
+  "name": "matches",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "db:generate": "drizzle-kit generate --config=./src/drizzle.config.js",
+    "db:migrate": "drizzle-kit migrate --config=./src/drizzle.config.js",
+    "db:studio": "drizzle-kit studio --config=./src/drizzle.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "dotenv": "^17.2.3",
+    "drizzle-orm": "^0.45.1",
+    "express": "^5.2.1",
+    "pg": "^8.18.0",
+    "ws": "^8.19.0"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.8"
+  }
+}
