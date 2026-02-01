@@ -47,12 +47,10 @@ matchRouter.post("/", async (req, res) => {
   const parseResult = createMatchSchema.safeParse(req.body);
 
   if (!parseResult.success) {
-    return res
-      .status(400)
-      .json({
-        error: "Invalid query parameters",
-        details: parseResult.error.details,
-      });
+    return res.status(400).json({
+      error: "Invalid query parameters",
+      details: parseResult.error.details,
+    });
   }
 
   const {
@@ -89,6 +87,10 @@ matchRouter.post("/", async (req, res) => {
         awayScore,
       })
       .returning();
+
+    if(res.app.locals.broadcastMatchCreated){
+      res.app.locals.broadcastMatchCreated(createdMatch)
+    }
 
     // 4. Respond
     return res.status(201).json({
