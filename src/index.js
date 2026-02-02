@@ -2,6 +2,7 @@ import express from 'express'
 import { matchRouter } from './routes/matches.js';
 import http from 'http'
 import { attachWebSocketServer } from './ws/server.js';
+import { securityMiddleware } from './arckjet.js';
 
 const PORT = Number(process.env.PORT || 8000);
 const HOST = process.env.HOST || '0.0.0.0'
@@ -18,6 +19,8 @@ app.get("/", (req, res) => {
     message: "Server is up and running 🚀",
   });
 });
+
+app.use(securityMiddleware())
 
 app.use('/matches',matchRouter)
 
